@@ -16,7 +16,7 @@ namespace APPEstacionamento
         public Form1()
         {
             InitializeComponent();
-           // Carrega_Tabela();
+            Carrega_Tabela();
         }
 
       
@@ -46,6 +46,7 @@ namespace APPEstacionamento
                 }
             }
 
+            Carrega_Tabela();
 
         }
 

@@ -42,7 +42,7 @@
             this.tableAdapterManager = new APPEstacionamento.BD_ProjetoDataSetTableAdapters.TableAdapterManager();
             this.estacionamentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnExcluir = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -118,12 +118,12 @@
             this.estacionamentoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
             this.estacionamentoBindingNavigator.BindingSource = this.estacionamentoBindingSource;
             this.estacionamentoBindingNavigator.CountItem = null;
-            this.estacionamentoBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.estacionamentoBindingNavigator.DeleteItem = this.BtnExcluir;
             this.estacionamentoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorSeparator,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorSeparator1,
-            this.bindingNavigatorDeleteItem,
+            this.BtnExcluir,
             this.bindingNavigatorSeparator2,
             this.BtnSalvar});
             this.estacionamentoBindingNavigator.Location = new System.Drawing.Point(0, 0);
@@ -146,14 +146,14 @@
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
-            // bindingNavigatorDeleteItem
+            // BtnExcluir
             // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.BtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("BtnExcluir.Image")));
+            this.BtnExcluir.Name = "BtnExcluir";
+            this.BtnExcluir.RightToLeftAutoMirrorImage = true;
+            this.BtnExcluir.Size = new System.Drawing.Size(23, 22);
+            this.BtnExcluir.Text = "Delete";
             // 
             // bindingNavigatorSeparator
             // 
@@ -314,7 +314,7 @@
         private BD_ProjetoDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingNavigator estacionamentoBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.ToolStripButton BtnExcluir;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
