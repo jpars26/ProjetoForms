@@ -28,6 +28,25 @@ namespace APPEstacionamento
             this.estacionamentoBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.bD_ProjetoDataSet);
 
+            String veiculo = $@"Veiculo {TxtVeiculo.Text}";
+            String lado = TxtLado.Text;
+            String data = "";
+
+            data = TxtData.Value.ToShortDateString();
+
+            if (TxtData.Value > DateTime.Now)
+            {
+                MessageBox.Show("Data maior que a atual, impossivel continuar!!");
+            }
+            else
+            {
+                if (Campo_Lado())
+                {
+
+                }
+            }
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,6 +82,22 @@ namespace APPEstacionamento
 
 
 
+        }
+
+        public bool Campo_Lado()
+        {
+            if (TxtLado.Text == "IMPAR")
+                return true;
+            else if (TxtLado.Text == "PAR")
+                return true;
+            else
+            {
+                MessageBox.Show("Lado incorreto");
+                return false;
+            }
+                
+
+            
         }
     }
 }

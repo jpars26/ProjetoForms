@@ -66,5 +66,7 @@ namespace APPEstacionamento
             String novadata = date.ToString("dddd") + ", dia " + date.ToString("dd") + " de " + date.ToString("MMMM");
             return novadata;
         }
+
+       
     }
 }
