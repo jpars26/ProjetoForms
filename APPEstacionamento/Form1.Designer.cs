@@ -32,17 +32,15 @@
             System.Windows.Forms.Label veiculoLabel;
             System.Windows.Forms.Label ladoLabel;
             System.Windows.Forms.Label dataLabel;
+            System.Windows.Forms.Label horaLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label idCarroLabel;
             this.bD_ProjetoDataSet = new APPEstacionamento.BD_ProjetoDataSet();
             this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estacionamentoTableAdapter = new APPEstacionamento.BD_ProjetoDataSetTableAdapters.EstacionamentoTableAdapter();
             this.tableAdapterManager = new APPEstacionamento.BD_ProjetoDataSetTableAdapters.TableAdapterManager();
             this.estacionamentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.BtnExcluir = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -56,9 +54,15 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxtHora = new System.Windows.Forms.ComboBox();
+            this.BtnExcluir = new System.Windows.Forms.Button();
+            this.TxtIdCarro = new System.Windows.Forms.TextBox();
             veiculoLabel = new System.Windows.Forms.Label();
             ladoLabel = new System.Windows.Forms.Label();
             dataLabel = new System.Windows.Forms.Label();
+            horaLabel = new System.Windows.Forms.Label();
+            idCarroLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bD_ProjetoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).BeginInit();
@@ -93,6 +97,15 @@
             dataLabel.TabIndex = 7;
             dataLabel.Text = "Data:";
             // 
+            // horaLabel
+            // 
+            horaLabel.AutoSize = true;
+            horaLabel.Location = new System.Drawing.Point(17, 117);
+            horaLabel.Name = "horaLabel";
+            horaLabel.Size = new System.Drawing.Size(33, 13);
+            horaLabel.TabIndex = 8;
+            horaLabel.Text = "Hora:";
+            // 
             // bD_ProjetoDataSet
             // 
             this.bD_ProjetoDataSet.DataSetName = "BD_ProjetoDataSet";
@@ -118,14 +131,13 @@
             this.estacionamentoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
             this.estacionamentoBindingNavigator.BindingSource = this.estacionamentoBindingSource;
             this.estacionamentoBindingNavigator.CountItem = null;
-            this.estacionamentoBindingNavigator.DeleteItem = this.BtnExcluir;
+            this.estacionamentoBindingNavigator.DeleteItem = null;
             this.estacionamentoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorSeparator,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorSeparator1,
-            this.BtnExcluir,
-            this.bindingNavigatorSeparator2,
-            this.BtnSalvar});
+            this.BtnSalvar,
+            this.bindingNavigatorSeparator2});
             this.estacionamentoBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.estacionamentoBindingNavigator.MoveFirstItem = null;
             this.estacionamentoBindingNavigator.MoveLastItem = null;
@@ -145,15 +157,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // BtnExcluir
-            // 
-            this.BtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("BtnExcluir.Image")));
-            this.BtnExcluir.Name = "BtnExcluir";
-            this.BtnExcluir.RightToLeftAutoMirrorImage = true;
-            this.BtnExcluir.Size = new System.Drawing.Size(23, 22);
-            this.BtnExcluir.Text = "Delete";
             // 
             // bindingNavigatorSeparator
             // 
@@ -192,8 +195,8 @@
             this.TxtLado.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "Lado", true));
             this.TxtLado.FormattingEnabled = true;
             this.TxtLado.Items.AddRange(new object[] {
-            "PAR",
-            "IMPAR"});
+            "Direito",
+            "Esquerdo"});
             this.TxtLado.Location = new System.Drawing.Point(392, 55);
             this.TxtLado.Name = "TxtLado";
             this.TxtLado.Size = new System.Drawing.Size(121, 21);
@@ -205,47 +208,25 @@
             this.TxtData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TxtData.Location = new System.Drawing.Point(227, 56);
             this.TxtData.Name = "TxtData";
-            this.TxtData.Size = new System.Drawing.Size(89, 20);
+            this.TxtData.Size = new System.Drawing.Size(119, 20);
             this.TxtData.TabIndex = 8;
+            this.TxtData.Value = new System.DateTime(2021, 7, 2, 17, 55, 37, 0);
             // 
             // DataGridBanco
             // 
             this.DataGridBanco.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridBanco.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridBanco.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridBanco.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
             this.DataGridBanco.DataSource = this.estacionamentoBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridBanco.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridBanco.Location = new System.Drawing.Point(20, 173);
+            this.DataGridBanco.Location = new System.Drawing.Point(12, 218);
             this.DataGridBanco.Name = "DataGridBanco";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridBanco.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGridBanco.Size = new System.Drawing.Size(606, 220);
+            this.DataGridBanco.Size = new System.Drawing.Size(646, 220);
             this.DataGridBanco.TabIndex = 8;
             // 
             // dataGridViewTextBoxColumn1
@@ -279,11 +260,84 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Situacao";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Hora";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Hora";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // TxtHora
+            // 
+            this.TxtHora.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "Hora", true));
+            this.TxtHora.FormattingEnabled = true;
+            this.TxtHora.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "00"});
+            this.TxtHora.Location = new System.Drawing.Point(56, 114);
+            this.TxtHora.Name = "TxtHora";
+            this.TxtHora.Size = new System.Drawing.Size(121, 21);
+            this.TxtHora.TabIndex = 9;
+            // 
+            // BtnExcluir
+            // 
+            this.BtnExcluir.Location = new System.Drawing.Point(296, 144);
+            this.BtnExcluir.Name = "BtnExcluir";
+            this.BtnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.BtnExcluir.TabIndex = 10;
+            this.BtnExcluir.Text = "Excluir";
+            this.BtnExcluir.UseVisualStyleBackColor = true;
+            this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click_1);
+            // 
+            // idCarroLabel
+            // 
+            idCarroLabel.AutoSize = true;
+            idCarroLabel.Location = new System.Drawing.Point(391, 97);
+            idCarroLabel.Name = "idCarroLabel";
+            idCarroLabel.Size = new System.Drawing.Size(47, 13);
+            idCarroLabel.TabIndex = 11;
+            idCarroLabel.Text = "Id Carro:";
+            // 
+            // TxtIdCarro
+            // 
+            this.TxtIdCarro.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "IdCarro", true));
+            this.TxtIdCarro.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.estacionamentoBindingSource, "IdCarro", true));
+            this.TxtIdCarro.Location = new System.Drawing.Point(444, 94);
+            this.TxtIdCarro.Name = "TxtIdCarro";
+            this.TxtIdCarro.Size = new System.Drawing.Size(100, 20);
+            this.TxtIdCarro.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 438);
+            this.ClientSize = new System.Drawing.Size(689, 466);
+            this.Controls.Add(idCarroLabel);
+            this.Controls.Add(this.TxtIdCarro);
+            this.Controls.Add(this.BtnExcluir);
+            this.Controls.Add(horaLabel);
+            this.Controls.Add(this.TxtHora);
             this.Controls.Add(this.DataGridBanco);
             this.Controls.Add(dataLabel);
             this.Controls.Add(this.TxtData);
@@ -314,7 +368,6 @@
         private BD_ProjetoDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingNavigator estacionamentoBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton BtnExcluir;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
@@ -328,6 +381,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.ComboBox TxtHora;
+        private System.Windows.Forms.Button BtnExcluir;
+        private System.Windows.Forms.TextBox TxtIdCarro;
     }
 }
 
