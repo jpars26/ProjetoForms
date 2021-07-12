@@ -33,18 +33,18 @@
             System.Windows.Forms.Label ladoLabel;
             System.Windows.Forms.Label dataLabel;
             System.Windows.Forms.Label horaLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.Label idCarroLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bD_ProjetoDataSet = new APPEstacionamento.BD_ProjetoDataSet();
             this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estacionamentoTableAdapter = new APPEstacionamento.BD_ProjetoDataSetTableAdapters.EstacionamentoTableAdapter();
             this.tableAdapterManager = new APPEstacionamento.BD_ProjetoDataSetTableAdapters.TableAdapterManager();
             this.estacionamentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnSalvar = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.TxtVeiculo = new System.Windows.Forms.TextBox();
             this.TxtLado = new System.Windows.Forms.ComboBox();
             this.TxtData = new System.Windows.Forms.DateTimePicker();
@@ -106,6 +106,15 @@
             horaLabel.TabIndex = 8;
             horaLabel.Text = "Hora:";
             // 
+            // idCarroLabel
+            // 
+            idCarroLabel.AutoSize = true;
+            idCarroLabel.Location = new System.Drawing.Point(391, 97);
+            idCarroLabel.Name = "idCarroLabel";
+            idCarroLabel.Size = new System.Drawing.Size(47, 13);
+            idCarroLabel.TabIndex = 11;
+            idCarroLabel.Text = "Id Carro:";
+            // 
             // bD_ProjetoDataSet
             // 
             this.bD_ProjetoDataSet.DataSetName = "BD_ProjetoDataSet";
@@ -128,13 +137,13 @@
             // 
             // estacionamentoBindingNavigator
             // 
-            this.estacionamentoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.estacionamentoBindingNavigator.AddNewItem = this.BtnAdicionar;
             this.estacionamentoBindingNavigator.BindingSource = this.estacionamentoBindingSource;
             this.estacionamentoBindingNavigator.CountItem = null;
             this.estacionamentoBindingNavigator.DeleteItem = null;
             this.estacionamentoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorSeparator,
-            this.bindingNavigatorAddNewItem,
+            this.BtnAdicionar,
             this.bindingNavigatorSeparator1,
             this.BtnSalvar,
             this.bindingNavigatorSeparator2});
@@ -149,14 +158,15 @@
             this.estacionamentoBindingNavigator.TabIndex = 0;
             this.estacionamentoBindingNavigator.Text = "bindingNavigator1";
             // 
-            // bindingNavigatorAddNewItem
+            // BtnAdicionar
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.BtnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAdicionar.Image")));
+            this.BtnAdicionar.Name = "BtnAdicionar";
+            this.BtnAdicionar.RightToLeftAutoMirrorImage = true;
+            this.BtnAdicionar.Size = new System.Drawing.Size(23, 22);
+            this.BtnAdicionar.Text = "Add new";
+            this.BtnAdicionar.Click += new System.EventHandler(this.BtnAdicionar_Click);
             // 
             // bindingNavigatorSeparator
             // 
@@ -168,11 +178,6 @@
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // BtnSalvar
             // 
             this.BtnSalvar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -181,6 +186,11 @@
             this.BtnSalvar.Size = new System.Drawing.Size(23, 22);
             this.BtnSalvar.Text = "Save Data";
             this.BtnSalvar.Click += new System.EventHandler(this.estacionamentoBindingNavigatorSaveItem_Click);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // TxtVeiculo
             // 
@@ -215,6 +225,7 @@
             // DataGridBanco
             // 
             this.DataGridBanco.AutoGenerateColumns = false;
+            this.DataGridBanco.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.DataGridBanco.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridBanco.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -310,15 +321,6 @@
             this.BtnExcluir.UseVisualStyleBackColor = true;
             this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click_1);
             // 
-            // idCarroLabel
-            // 
-            idCarroLabel.AutoSize = true;
-            idCarroLabel.Location = new System.Drawing.Point(391, 97);
-            idCarroLabel.Name = "idCarroLabel";
-            idCarroLabel.Size = new System.Drawing.Size(47, 13);
-            idCarroLabel.TabIndex = 11;
-            idCarroLabel.Text = "Id Carro:";
-            // 
             // TxtIdCarro
             // 
             this.TxtIdCarro.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "IdCarro", true));
@@ -367,7 +369,7 @@
         private BD_ProjetoDataSetTableAdapters.EstacionamentoTableAdapter estacionamentoTableAdapter;
         private BD_ProjetoDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingNavigator estacionamentoBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripButton BtnAdicionar;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;

@@ -17,47 +17,82 @@ namespace APPEstacionamento
         public Form1()
         {
             InitializeComponent();
-            
+            Desativar_Campo();
             Carrega_Tabela();
+            campos_lipos();
+            
+        }
+        public void campos_lipos()
+        {
+            TxtVeiculo.Text = "";
+            TxtLado.Text = "";
+            TxtIdCarro.Text = "";
+            TxtHora.Text = "";
         }
 
-      
-        private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        public bool CampoVazio(Control controle, String campo)
         {
-
-           
-
-            this.Validate();
-            this.estacionamentoBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.bD_ProjetoDataSet);
-
-            String veiculo = $@"Veiculo {TxtVeiculo.Text}";
-            String lado = TxtLado.Text;
-            String data = TxtData.Text;
-            int hora = Convert.ToInt32(TxtHora.Text);
-
-            //sempre tem que chamar caso for criar um novo
-            Estacionamento estacionamento = new Estacionamento(veiculo,data,lado,hora);
-            //chamando a função cadastro
-            estacionamento.Cadastro(estacionamento);
-
-            
-
-            data = TxtData.Value.ToShortDateString();
-
-            if (TxtData.Value > DateTime.Now)
+            if (controle.Text == "")
             {
-                MessageBox.Show("Data maior que a atual, impossivel continuar!!");
+                MessageBox.Show("O campo " + campo + " é obrigatortio");
+                controle.Focus();
+                return true;
+
             }
             else
             {
-                if (Campo_Lado())
-                {
-
-                }
+                return false;
             }
 
+        }
+        private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+         
+
+           
+                if (CampoVazio(TxtVeiculo, "Veiculo"))
+                {
+                    return;
+                }
+                else if (CampoVazio(TxtLado, "Lado"))
+                {
+                    return;
+                }
+                else if (CampoVazio(TxtHora, "Hora"))
+                {
+                    return;
+                }
+                else
+                {
+                    this.Validate();
+                    this.estacionamentoBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.bD_ProjetoDataSet);
+
+                    String veiculo = $@"Veiculo {TxtVeiculo.Text}";
+                    String lado = TxtLado.Text;
+                    String data = TxtData.Text;
+                    int hora = Convert.ToInt32(TxtHora.Text);
+
+                    //sempre tem que chamar caso for criar um novo
+                    Estacionamento estacionamento = new Estacionamento(veiculo, data, lado, hora);
+                    //chamando a função cadastro
+                    estacionamento.Cadastro(estacionamento);
+
+                    MessageBox.Show(estacionamento.ReceberMenssagem());
+
+                    data = TxtData.Value.ToShortDateString();
+
+                    if (TxtData.Value > DateTime.Now)
+                        MessageBox.Show("Data maior que a atual, impossivel continuar!!");
+
+                }
+
+
+            
+
+
             Carrega_Tabela();
+            Desativar_Campo();
 
         }
 
@@ -136,7 +171,7 @@ namespace APPEstacionamento
 
                 sql.CommandType = CommandType.Text;
                 sql.ExecuteNonQuery();
-                MessageBox.Show("Excluid com sucesso!");
+                MessageBox.Show("Excluido com sucesso!");
                 con.Desconectar();
                 Carrega_Tabela();
             }
@@ -145,6 +180,50 @@ namespace APPEstacionamento
                 MessageBox.Show($@"Não foi possivel deletar: {erro}");
             }
 
+        }
+
+        public void Desativar_Campo()
+        {
+            TxtData.Enabled = false;
+            TxtHora.Enabled = false;
+            TxtLado.Enabled = false;
+            TxtVeiculo.Enabled = false;
+            BtnSalvar.Enabled = false;
+            BtnAdicionar.Enabled = true;
+
+            
+        }
+
+        public void Ativar_Campos()
+        {
+            TxtData.Enabled = true;
+            TxtHora.Enabled = true;
+            TxtLado.Enabled = true;
+            TxtVeiculo.Enabled = true;
+            BtnSalvar.Enabled = true;
+            BtnAdicionar.Enabled = false;
+
+            TxtVeiculo.Text = "";
+            TxtLado.Text = "";
+            TxtIdCarro.Text = "";
+            TxtHora.Text = "";
+
+        }
+
+        private void BtnAdicionar_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Deseja cadastrar o carro?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+            if (confirm.ToString().ToUpper() == "YES")
+            {
+                Ativar_Campos();
+                
+            }
+            else
+            {
+               
+                Desativar_Campo();
+            }
+            
         }
     }
 }
